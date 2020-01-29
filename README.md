@@ -12,14 +12,8 @@ This project is an study case where we will build a very simple API with Django 
 * Django Rest Framework >= 3.11.0 (powerful and flexible toolkit for building Web APIs)
 * AWS Account (You need to have an AWS account to deploy the application and to create the database)
 * [Docker](https://www.docker.com/) (We will deploy our app using docker containers for this reason you should know docker concepts to understand how things are working).
+* AWS CLI with your credentials property configured.
 
-## AWS Account Creation 
-
-To create and activate a new AWS Account, please follow the steps covered by this article: [How do I create and activate a new Amazon Web Services account?](https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/).
-
-After that is it important to install [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html) which will allow us to do changes at our AWS Account from command line.
-
-Finally, you can [configure your aws credentials](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html).
 
 ## Running project locally
 
@@ -51,7 +45,17 @@ If the command was successful your terminal will show:
 The server will be available on http://0.0.0.0:8800/.
 ![server running locally on http://0.0.0.0:8800](./docs/server-local-available.png)
 
-## Creating AWS Fargate Cluster
+## Running on AWS
+
+### AWS Account and CLI
+
+To create and activate a new AWS Account, please follow the steps covered by this article: [**How do I create and activate a new Amazon Web Services account?**](https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/).
+
+After that is it important to install [**AWS CLI**](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html) which will allow us to do changes at our AWS Account from command line.
+
+Finally, you can [**configure your aws credentials**](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html).
+
+### Creating AWS Fargate Cluster
 
 To know more about AWS Fargate you should read the oficial [documentation](https://aws.amazon.com/fargate/).
 
@@ -59,7 +63,7 @@ This chapter will cover the configuration of a AWS Fargate Cluster where we will
 
 As you have read AWS Fargate is a serverless compute engine for containers so we need to configure the container that will run our application.
 
-### Elastic Container Repository (ECR)
+#### Elastic Container Repository (ECR)
 
 To do this we have created the [Dockerfile](./Dockerfile) that contains the instructions to build a docker image thar can be used to create containeres to run our application.
 
@@ -94,7 +98,7 @@ Now we have pushed our image in ECR.
 
 After pushing the image you can see the second column called Image URI (we will use this info to configure the Task container in AWS Fargate).
 
-### AWS Fargate
+#### AWS Fargate
 
 Now, let us go to the link https://console.aws.amazon.com/ecs/home?region=us-east-1#/getStarted and create a new Fargate Application. Click on `Get Started`.
 
